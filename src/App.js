@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import NewList from './Components/NewList/NewList';
-import StudentList from './Components/studentList'
-import './App.css';
-
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Users from './user/pages/Users';
+import NewPlace from './places/pages/NewPlace';
+import UserPlaces from './places/pages/UserPlaces';
+import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 
 const App = () => {
-const [students,setStudents]=useState([])
 
-  const addNewListHandler = (newList) => {
-    setStudents(students.concat(newList));
-    
+  return (
+    <>
+      <MainNavigation />
+      <br/>
+      <br/>
+      <br/>
+      <div>
+        <Routes>
+          <Route path="/" element={<Users />} />
+          <Route path="/:userId/places" element={<UserPlaces />} />
+          <Route path="/places/new" element={<NewPlace />} />
+        </Routes>
+      </div>
 
-};
+    </>
 
-  return(
-    <div className='Student-List'>
-      <h2>Students List</h2>
-      <NewList onAddList={addNewListHandler}/>
-      <StudentList students={students}/>
-     
-    </div>
   );
 };
 
